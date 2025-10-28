@@ -1,0 +1,16 @@
+version: "3"
+
+# Store your auth token in the NGROK_AUTHTOKEN env var before running:
+#   export NGROK_AUTHTOKEN=xxxx
+authtoken: ${NGROK_AUTHTOKEN}
+
+tunnels:
+  backend:
+    addr: 8080
+    proto: http
+  frontend:
+    addr: 5173
+    proto: http
+  admin:
+    addr: 5174
+    proto: http

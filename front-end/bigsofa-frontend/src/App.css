@@ -1,0 +1,374 @@
+/* Layout tweaks layered over Ant Design reset */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+.ant-layout-sider .ant-menu-item a {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-layout-content {
+  background: transparent;
+}
+
+.app-root-layout {
+  min-height: 100vh;
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --header-text: inherit;
+  --content-bg: #ffffff;
+  --content-border-radius: 12px;
+  --content-shadow: none;
+  background: transparent;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--header-bg, rgba(255, 255, 255, 0.92));
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  color: var(--header-text);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.app-header__toggle {
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header__brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  padding: 4px;
+  object-fit: contain;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.88) 0%, rgba(3, 18, 40, 0.92) 100%);
+  box-shadow: 0 18px 34px rgba(5, 17, 38, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.app-header__title {
+  margin: 0;
+  color: inherit;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.app-header__title--compact {
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.app-header__title--decorated {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.app-header__spacer {
+  flex: 1;
+}
+
+.header-search {
+  max-width: 360px;
+}
+
+.app-header__icon {
+  font-size: 20px;
+}
+
+.app-header__icon--cart {
+  font-size: 24px;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-header__icons {
+  display: flex;
+  align-items: center;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-header__nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.app-header__nav-link {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.app-header__nav-link:hover,
+.app-header__nav-link:focus {
+  color: #0c2340;
+  text-shadow: 0 0 14px rgba(12, 35, 64, 0.45), 0 0 28px rgba(7, 24, 45, 0.35);
+}
+
+.app-header__dropdown .ant-dropdown-menu {
+  border-radius: 12px;
+  padding: 8px 0;
+}
+
+.app-header__dropdown-link {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  text-align: left;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.app-header__dropdown-link:hover,
+.app-header__dropdown-link:focus {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.sidebar-brand {
+  height: 150px;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(10, 34, 64, 0.95), rgba(0, 21, 41, 0.95));
+}
+
+.sidebar-brand__logo {
+  width: 130px;
+  height: 130px;
+  border-radius: 16px;
+  object-fit: contain;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 6px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.app-drawer .ant-drawer-header {
+  background: #001529;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+.app-drawer .ant-drawer-title {
+  color: inherit;
+}
+
+.app-drawer .ant-drawer-body {
+  padding: 0;
+  background: #001529;
+  min-height: 100%;
+  overflow-y: hidden; /* Hides vertical scrollbar */
+  overflow-x: hidden;
+}
+
+.app-drawer .ant-drawer-wrapper-body {
+  overflow: hidden;
+}
+
+.app-drawer .ant-drawer-content,
+.app-drawer .ant-drawer-content-wrapper {
+  overflow: hidden;
+}
+
+.app-drawer .ant-menu-dark,
+.app-drawer .ant-menu-dark .ant-menu-item,
+.app-drawer .ant-menu-dark .ant-menu-submenu-title {
+  background: transparent;
+}
+
+.app-drawer .ant-menu-dark .ant-menu-item,
+.app-drawer .ant-menu-dark .ant-menu-submenu-title {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  border-radius: 0;
+}
+
+.app-drawer .ant-menu-dark .ant-menu-item::after {
+  display: none;
+}
+
+.app-drawer .ant-menu-dark .ant-menu-item,
+.app-drawer .ant-menu-dark .ant-menu-submenu-title {
+  background: transparent;
+}
+
+.app-drawer .ant-menu-dark .ant-menu-item:hover,
+.app-drawer .ant-menu-dark .ant-menu-item-active,
+.app-drawer .ant-menu-dark .ant-menu-item-selected,
+.app-drawer .ant-menu-dark .ant-menu-item-selected:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 18px rgba(191, 219, 254, 0.5);
+}
+
+.app-drawer .ant-menu-dark .ant-menu-item a {
+  color: inherit;
+}
+
+.app-sider .ant-menu-dark .ant-menu-item,
+.app-sider .ant-menu-dark .ant-menu-submenu-title {
+  border-radius: 0;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  box-shadow: none;
+}
+
+.app-sider .ant-menu-dark .ant-menu-item::after {
+  display: none;
+}
+
+.app-sider .ant-menu-dark .ant-menu-item,
+.app-sider .ant-menu-dark .ant-menu-submenu-title {
+  background: transparent;
+}
+
+.app-sider .ant-menu-dark .ant-menu-item a {
+  color: inherit;
+}
+
+.app-sider .ant-menu-dark .ant-menu-item:hover,
+.app-sider .ant-menu-dark .ant-menu-item-active,
+.app-sider .ant-menu-dark .ant-menu-item-selected,
+.app-sider .ant-menu-dark .ant-menu-item-selected:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 18px rgba(191, 219, 254, 0.5);
+}
+
+.app-sider .ant-menu-dark .ant-menu-item:hover a,
+.app-sider .ant-menu-dark .ant-menu-item-selected a {
+  color: inherit;
+}
+
+.content-container {
+  margin: 0;
+  width: 100%;
+}
+
+.content-inner {
+  width: 100%;
+  padding: 0;
+  min-height: 360px;
+  background: var(--content-bg);
+  border-radius: var(--content-border-radius);
+  box-shadow: var(--content-shadow);
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-radius 0.35s ease;
+}
+
+.app-footer {
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .app-header__nav {
+    display: none;
+  }
+
+  .app-header__actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .header-search {
+    max-width: 100%;
+  }
+
+  .app-header__brand-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .app-header__title--decorated {
+    letter-spacing: 0.08em;
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-header__title--decorated {
+    letter-spacing: 0.1em;
+  }
+
+  .app-header__title {
+    font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .app-root-layout {
+    background: #f5f5f5;
+  }
+
+  .app-header {
+    border-bottom-color: rgba(148, 163, 184, 0.25);
+    box-shadow: 0 20px 60px rgba(2, 12, 30, 0.4);
+  }
+
+  .app-header__brand {
+    gap: 16px;
+  }
+
+  .content-container {
+    padding: clamp(20px, 4vw, 56px);
+  }
+
+  .content-inner {
+    padding: clamp(20px, 3.5vw, 44px);
+  }
+
+  .app-footer {
+    background: rgba(2, 15, 35, 0.88);
+    color: #e2e8f0;
+    border-top: 1px solid rgba(226, 232, 240, 0.18);
+    padding: 24px clamp(16px, 5vw, 64px);
+    margin-top: clamp(32px, 6vw, 80px);
+  }
+
+  .app-header__nav-link:hover,
+  .app-header__nav-link:focus {
+    color: #0b1f38;
+    text-shadow: 0 0 18px rgba(11, 31, 56, 0.65), 0 0 30px rgba(6, 20, 38, 0.45);
+  }
+}

@@ -1,0 +1,175 @@
+.dining {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.dining__hero {
+  --dining-parallax-image: none;
+  --dining-parallax-offset: 0px;
+  height: clamp(320px, 45vw, 520px);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  box-shadow: 0 40px 55px -30px rgba(17, 24, 39, 0.55);
+}
+
+.dining__hero::before {
+  content: '';
+  position: absolute;
+  inset: -12vh 0;
+  background-image: var(--dining-parallax-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateY(calc(var(--dining-parallax-offset) * 0.6));
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.dining__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.2), rgba(17, 24, 39, 0.6));
+  z-index: 0;
+}
+
+.dining__hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  z-index: 1;
+}
+
+.dining__eyebrow {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.45em;
+}
+
+.dining__hero-overlay h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  letter-spacing: 0.35em;
+}
+
+.dining__intro {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dining__intro-eyebrow {
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #6b7280;
+}
+
+.dining__experiences {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dining__experience-card {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 16px;
+  padding: 28px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 36px -24px rgba(15, 23, 42, 0.35);
+  text-align: center;
+  color: #1f2937;
+}
+
+.dining__experience-card h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.dining__experience-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.dining__collections {
+  display: grid;
+  gap: 28px;
+}
+
+.dining__collection-card {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(240px, 1fr);
+  gap: 32px;
+  align-items: stretch;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 48px -24px rgba(15, 23, 42, 0.35);
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #f8fafc;
+}
+
+.dining__collection-image {
+  background-size: cover;
+  background-position: center;
+  min-height: 260px;
+}
+
+.dining__collection-body {
+  padding: 36px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dining__collection-body h2 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 1.2rem;
+}
+
+.dining__collection-body p {
+  margin: 0;
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .dining__collection-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dining {
+    gap: 48px;
+  }
+
+  .dining__hero {
+    border-radius: 18px;
+  }
+
+  .dining__collections {
+    gap: 24px;
+  }
+}

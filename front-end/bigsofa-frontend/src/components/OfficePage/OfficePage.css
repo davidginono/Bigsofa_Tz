@@ -1,0 +1,160 @@
+.office {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.office__hero {
+  height: clamp(320px, 45vw, 520px);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  box-shadow: 0 40px 55px -30px rgba(17, 24, 39, 0.55);
+}
+
+.office__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.2), rgba(17, 24, 39, 0.6));
+}
+
+.office__hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  z-index: 1;
+}
+
+.office__eyebrow {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.45em;
+}
+
+.office__hero-overlay h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  letter-spacing: 0.35em;
+}
+
+.office__intro {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.office__intro-eyebrow {
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #6b7280;
+}
+
+.office__highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.office__highlight-card {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 16px;
+  padding: 28px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 36px -24px rgba(15, 23, 42, 0.35);
+  text-align: center;
+  color: #1f2937;
+}
+
+.office__highlight-card h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.office__highlight-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.office__suites {
+  display: grid;
+  gap: 28px;
+}
+
+.office__suite-card {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(240px, 1fr);
+  gap: 32px;
+  align-items: stretch;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 48px -24px rgba(15, 23, 42, 0.35);
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  color: #f8fafc;
+}
+
+.office__suite-image {
+  background-size: cover;
+  background-position: center;
+  min-height: 260px;
+}
+
+.office__suite-body {
+  padding: 36px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.office__suite-body h2 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 1.2rem;
+}
+
+.office__suite-body p {
+  margin: 0;
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .office__suite-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .office {
+    gap: 48px;
+  }
+
+  .office__hero {
+    border-radius: 18px;
+  }
+
+  .office__suites {
+    gap: 24px;
+  }
+}

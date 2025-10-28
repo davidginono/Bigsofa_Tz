@@ -1,0 +1,218 @@
+.home {
+  --page-padding: clamp(16px, 4vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+  padding: 0 var(--page-padding) 160px;
+}
+
+.home__layer {
+  position: relative;
+}
+
+.home__hero.home__layer {
+  --hero-image: none;
+  --parallax-offset: 0px;
+  height: clamp(320px, 55vw, 620px);
+  border-radius: 36px;
+  overflow: hidden;
+
+  background: transparent;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  box-shadow: 0 40px 70px -48px rgba(15, 23, 42, 0.45);
+  margin: 0 calc(-1 * var(--page-padding));
+  width: calc(100% + var(--page-padding) * 2);
+}
+
+.home__hero::before {
+  content: '';
+  position: absolute;
+  inset: -15vh 0;
+  background-image: var(--hero-image);
+  
+  transform: translateY(calc(var(--parallax-offset) * 0.65));
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.home__hero::after {
+  content: '';
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.65));
+  z-index: 0;
+}
+
+.home__hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  color: #f8fafc;
+  z-index: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home__hero-eyebrow {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+}
+
+.home__headline {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 0.3em;
+}
+
+.home__tagline {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: 0.2em;
+  color: #e5e7eb;
+}
+
+.home__whatwedo.home__layer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.home__section-eyebrow {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin: 0;
+}
+
+.home__services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.home__service-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 320px;
+  box-shadow: 0 32px 46px -22px rgba(15, 23, 42, 0.45);
+  isolation: isolate;
+  cursor: default;
+  outline: none;
+}
+
+.home__service-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.78);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.home__service-card:hover .home__service-image,
+.home__service-card:focus-visible .home__service-image {
+  transform: scale(1.06);
+  filter: brightness(1);
+}
+
+.home__service-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 32px;
+  text-align: center;
+  color: #f8fafc;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.15), rgba(15, 23, 42, 0.65));
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.home__service-card:hover .home__service-overlay,
+.home__service-card:focus-visible .home__service-overlay {
+  opacity: 0;
+}
+
+.home__service-overlay h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.home__service-overlay p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 320px;
+  color: #e5e7eb;
+}
+
+.home__about-wrapper.home__layer {
+  position: relative;
+  padding: 0 var(--page-padding);
+  margin-top: 60px;
+}
+
+.home__about-viewport {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.home__fade {
+  opacity: 0;
+  transform: translateY(90px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
+}
+
+.home__fade.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .home {
+    gap: 72px;
+    --page-padding: clamp(12px, 6vw, 40px);
+    padding-bottom: 96px;
+  }
+
+  .home__service-card {
+    min-height: 260px;
+  }
+
+  .home__service-overlay h2 {
+    font-size: 1.25rem;
+    letter-spacing: 0.15em;
+  }
+
+  .home__about-wrapper {
+    margin-top: 32px;
+    padding: 0 var(--page-padding);
+  }
+}
+
