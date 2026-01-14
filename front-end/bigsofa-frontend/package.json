@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prebuild": "node scripts/generate-sitemap.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest"
@@ -37,11 +38,5 @@
     "vite": "^7.1.7",
     "vitest": "^2.1.4"
   }
-  {
-  "scripts": {
-    "prebuild": "node scripts/generate-sitemap.js",
-    "build": "vite build"
-  }
-}
 
 }
