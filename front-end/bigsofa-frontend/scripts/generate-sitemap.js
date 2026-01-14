@@ -5,15 +5,19 @@ const BASE_URL = "https://bigsofatanzania.com";
 const API_BASE_URL = "https://api.bigsofatanzania.com"; // your backend
 
 async function generateSitemap() {
-  // 1️⃣ Fetch dynamic data
-  const products = await axios.get(`${API_BASE_URL}/products`);
-  const categories = await axios.get(`${API_BASE_URL}/categories`);
+  // // 1️⃣ Fetch dynamic data
+  // const products = await axios.get(`${API_BASE_URL}/products`);
+  // const categories = await axios.get(`${API_BASE_URL}/categories`);
 
   // 2️⃣ Static pages
   const staticPages = [
     "",
     "/shop",
-    "/about",
+    "/interiors",
+    "/furniture",
+    "/office",
+    "/living-room",
+    "/dining",
     "/contact"
   ];
 
@@ -21,13 +25,13 @@ async function generateSitemap() {
   const urls = [
     ...staticPages.map(p => `${BASE_URL}${p}`),
 
-    ...categories.data.map(cat =>
-      `${BASE_URL}/category/${cat.slug}`
-    ),
+    // ...categories.data.map(cat =>
+    //   `${BASE_URL}/category/${cat.slug}`
+    // ),
 
-    ...products.data.map(product =>
-      `${BASE_URL}/product/${product.slug}`
-    )
+    // ...products.data.map(product =>
+    //   `${BASE_URL}/product/${product.slug}`
+    // )
   ];
 
   // 4️⃣ Generate XML
