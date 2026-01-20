@@ -31,12 +31,12 @@ const suites = [
   {
     name: 'Nightstands & Dressers',
     blurb: 'Storage pieces with soft-close hardware and handfinished timbers to organize every bedside ritual.',
-    image: 'https://images.pexels.com/photos/1743227/pexels-photo-1743227.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://m.media-amazon.com/images/I/81Jh9KG522L._AC_UL320_.jpg',
   },
   {
     name: 'Finishing Touches',
     blurb: 'Benches, mirrors, and accent lighting that elevate the mood and make small rooms feel expansive.',
-    image: 'https://images.pexels.com/photos/2988860/pexels-photo-2988860.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTw5KPjRoFPz7TmSXHycsBhESYoizNM8TgMQ&s',
   },
 ]
 
