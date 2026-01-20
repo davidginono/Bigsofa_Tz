@@ -31,12 +31,12 @@ const vignettes = [
   {
     name: 'Accent Seating',
     blurb: 'Rocking chairs, statement occasional chairs, and poufs that add personality to any corner.',
-    image: 'https://images.pexels.com/photos/3705528/pexels-photo-3705528.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://m.media-amazon.com/images/I/71XATi8y8kL._AC_UL320_.jpg',
   },
   {
     name: 'Tables & Storage',
     blurb: 'Coffee tables, consoles, and media units crafted from teak, mango, and metalwork.',
-    image: 'https://images.pexels.com/photos/1571461/pexels-photo-1571461.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://m.media-amazon.com/images/I/71OG00IXCbL._AC_UL320_.jpg',
   },
 ]
 
