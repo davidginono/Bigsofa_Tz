@@ -13,6 +13,7 @@ import {
   DownOutlined,
 } from '@ant-design/icons'
 import { Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import logo from './assets/bigsofa.jpg'
 import HomePage from './components/HomePage/HomePage'
 import ShopPage from './components/ShopPage/ShopPage'
@@ -559,20 +560,23 @@ function AppLayout() {
 
 function App() {
   return (
-    <Routes>
-      <Route element={<AppLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="furniture" element={<FurniturePage />} />
-      <Route path="interiors" element={<InteriorsPage />} />
-      <Route path="showroom" element={<ShowroomPage />} />
-      <Route path="living-room" element={<LivingRoomPage />} />
-      <Route path="bedroom" element={<BedroomPage />} />
-      <Route path="dining" element={<DiningPage />} />
-      <Route path="office" element={<OfficePage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route path="contact" element={<ContactPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="furniture" element={<FurniturePage />} />
+        <Route path="interiors" element={<InteriorsPage />} />
+        <Route path="showroom" element={<ShowroomPage />} />
+        <Route path="living-room" element={<LivingRoomPage />} />
+        <Route path="bedroom" element={<BedroomPage />} />
+        <Route path="dining" element={<DiningPage />} />
+        <Route path="office" element={<OfficePage />} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
+      </Routes>
+      <SpeedInsights />
+    </>
   )
 }
 

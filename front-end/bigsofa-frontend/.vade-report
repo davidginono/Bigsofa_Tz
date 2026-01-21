@@ -1,0 +1,84 @@
+# Vercel Speed Insights Implementation Report
+
+## Summary
+Successfully implemented Vercel Speed Insights integration into the Bigsofa Tanzania frontend project as per the official Vercel documentation.
+
+## What Was Implemented
+
+### 1. Package Installation
+- Installed `@vercel/speed-insights` package (version ^1.3.1) using npm
+- Updated package.json with the new dependency
+- Updated package-lock.json with all transitive dependencies
+
+### 2. Component Integration
+Added the SpeedInsights component to the main App.jsx file:
+
+**File Modified:**
+- `src/App.jsx`
+
+**Changes Made:**
+1. Added import statement: `import { SpeedInsights } from '@vercel/speed-insights/react'`
+   - Used the React export since this is a React/Vite app (not Next.js)
+   - Placed after other React Router imports for logical organization
+
+2. Wrapped the Routes component in a fragment and added `<SpeedInsights />` after Routes:
+   - Changed: `<Routes>...</Routes>` 
+   - To: `<><Routes>...</Routes><SpeedInsights /></>`
+   - This ensures SpeedInsights is available for tracking performance metrics across all routes
+
+### 3. Testing & Verification
+- ✅ Build completed successfully with `npm run build`
+- ✅ No new linting errors introduced by the changes
+- ✅ Project builds and bundles correctly with the new dependency
+
+## Why These Implementation Choices
+
+1. **Framework-Specific Export**: Used `@vercel/speed-insights/react` instead of the generic export because:
+   - This is a pure React application using Vite, not Next.js
+   - The React export provides the correct component wrapper for React applications
+   - Offers better integration with React's component lifecycle
+
+2. **App-Level Integration**: Placed SpeedInsights at the top-level App component because:
+   - Ensures tracking works across all routes automatically
+   - No need to manually manage pathname prop since SpeedInsights handles it internally in React mode
+   - Cleaner than wrapping individual routes
+
+3. **Fragment Wrapper**: Used `<>...</>` to wrap Routes and SpeedInsights because:
+   - Avoids adding an unnecessary DOM element
+   - Maintains the original layout and CSS behavior
+   - SpeedInsights renders nothing visible to the DOM by default
+
+## Next Steps for Deployment
+
+1. **Enable Speed Insights in Vercel Dashboard**:
+   - Go to your Vercel dashboard
+   - Select your project
+   - Click the "Speed Insights" tab
+   - Select "Enable"
+
+2. **Deploy to Vercel**:
+   - Push changes to your repository
+   - Deploy using: `vercel deploy` or push to your connected git repository
+   - Speed Insights will automatically start tracking after deployment
+
+3. **View Performance Data**:
+   - After deployment and once users visit the site, data will appear in the Vercel Dashboard
+   - Check the Speed Insights tab to view Core Web Vitals and performance metrics
+
+## Files Changed
+
+### Modified Files:
+- `package.json` - Added @vercel/speed-insights dependency
+- `package-lock.json` - Updated with dependency tree
+- `src/App.jsx` - Added SpeedInsights import and component
+
+### Build Artifacts Excluded:
+- `dist/` directory excluded from git (already in .gitignore)
+- Only source code changes and lockfiles are staged
+
+## Verification
+
+- Build completed successfully with no errors
+- All dependencies properly installed
+- No breaking changes to existing functionality
+- Code follows project conventions and patterns
