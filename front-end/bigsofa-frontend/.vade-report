@@ -1,0 +1,53 @@
+Implemented Vercel Web Analytics for the Bigsofa furniture e-commerce web app.
+
+## Summary
+Successfully integrated Vercel Web Analytics into the React + Vite project to enable visitor tracking and analytics collection.
+
+## Changes Made
+
+### Files Modified:
+1. **src/App.jsx**
+   - Added import: `import { Analytics } from '@vercel/analytics/react'`
+   - Wrapped the Routes component with a fragment and added the `<Analytics />` component
+   - The Analytics component is now rendered at the app root level to track all page views and user interactions
+
+### Files Modified (Dependencies):
+2. **package.json** (updated via npm install)
+   - Added: `@vercel/analytics: ^1.6.1` to dependencies
+
+3. **package-lock.json** (updated via npm install)
+   - Updated with new dependency entries for @vercel/analytics and its transitive dependencies
+
+## Implementation Details
+
+### Framework: React + Vite
+For React applications (including those built with create-react-app or Vite), Vercel Web Analytics provides the `Analytics` component from `@vercel/analytics/react`.
+
+### Integration Approach
+- The Analytics component was added to the root App component as a sibling to the Routes
+- This ensures it's initialized once when the app mounts and tracks all page navigation and events
+- The component is wrapped in a Fragment to avoid structural changes to the existing layout
+
+### Route Support
+With the Analytics component imported from `@vercel/analytics/react`, the library automatically:
+- Detects route changes using React Router hooks
+- Tracks page views automatically as users navigate between pages
+- Collects performance metrics and user interaction data
+
+## Verification
+✓ Build completed successfully with no errors
+✓ Package installed correctly (v1.6.1)
+✓ No breaking changes to existing code structure
+✓ Import statement properly added to dependencies
+
+## Next Steps (for the team)
+1. Enable Web Analytics in the Vercel dashboard for this project
+2. Deploy the app to Vercel
+3. Monitor analytics data in the dashboard after deployment
+4. Consider adding custom events using `@vercel/analytics/react` for specific user interactions (button clicks, form submissions, etc.) if needed
+
+## Notes
+- The project uses React Router for navigation, which is fully compatible with @vercel/analytics
+- Once deployed to Vercel, the analytics will automatically collect data from the `/_vercel/insights/view` endpoint
+- No configuration changes needed in vite.config.js or other build files
+- The implementation follows Vercel's official React documentation for Web Analytics integration

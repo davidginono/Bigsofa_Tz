@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Badge, Button, Drawer, Dropdown, Grid, Layout, Menu, Space, Typography, theme } from 'antd'
+import { Analytics } from '@vercel/analytics/react'
 import {
   ShopOutlined,
   HomeOutlined,
@@ -559,20 +560,23 @@ function AppLayout() {
 
 function App() {
   return (
-    <Routes>
-      <Route element={<AppLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="furniture" element={<FurniturePage />} />
-      <Route path="interiors" element={<InteriorsPage />} />
-      <Route path="showroom" element={<ShowroomPage />} />
-      <Route path="living-room" element={<LivingRoomPage />} />
-      <Route path="bedroom" element={<BedroomPage />} />
-      <Route path="dining" element={<DiningPage />} />
-      <Route path="office" element={<OfficePage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route path="contact" element={<ContactPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="furniture" element={<FurniturePage />} />
+        <Route path="interiors" element={<InteriorsPage />} />
+        <Route path="showroom" element={<ShowroomPage />} />
+        <Route path="living-room" element={<LivingRoomPage />} />
+        <Route path="bedroom" element={<BedroomPage />} />
+        <Route path="dining" element={<DiningPage />} />
+        <Route path="office" element={<OfficePage />} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
+      </Routes>
+      <Analytics />
+    </>
   )
 }
 
