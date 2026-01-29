@@ -1,0 +1,62 @@
+# Vercel Speed Insights Implementation
+
+## Summary
+Successfully implemented Vercel Speed Insights for the Bigsofa Tanzania furniture e-commerce web application.
+
+## Changes Made
+
+### 1. Package Installation
+- Installed `@vercel/speed-insights` package via npm
+- Updated `package.json` with the new dependency
+- Updated `package-lock.json` with the resolved dependency tree
+
+### 2. Code Integration
+**Modified: `front-end/bigsofa-frontend/src/App.jsx`**
+- Added import statement: `import { SpeedInsights } from '@vercel/speed-insights/react'`
+- Added `<SpeedInsights />` component alongside the existing `<Analytics />` component in the main App component
+- Implementation follows the React/Vite framework pattern from the Vercel documentation
+
+## Implementation Details
+
+The SpeedInsights component was integrated following the same pattern as the existing Analytics component:
+- Imported from `@vercel/speed-insights/react` (standard React implementation)
+- Placed at the root level of the App component, after all Routes
+- Positioned next to the Analytics component for consistency
+
+This implementation ensures:
+- Speed metrics will be automatically collected from all pages
+- Minimal performance overhead
+- Seamless integration with the existing Vercel Analytics setup
+
+## Verification
+
+### Build Status: ✅ SUCCESS
+- Production build completed successfully
+- No build errors introduced
+- All assets generated correctly
+
+### Linting Status: ✅ NO NEW ERRORS
+- No new linting errors introduced by this change
+- Pre-existing linting issues in the codebase are unrelated to Speed Insights implementation
+
+### Package Manager
+- Used npm (as detected from existing package-lock.json)
+- Lock file properly updated with new dependency
+
+## Next Steps for Deployment
+
+After deploying to Vercel:
+1. Enable Speed Insights in the Vercel dashboard (Project → Speed Insights tab → Enable)
+2. Verify the `/_vercel/speed-insights/script.js` is accessible after deployment
+3. Monitor the Speed Insights dashboard for performance metrics
+
+## Files Modified
+- `front-end/bigsofa-frontend/package.json` (+1 dependency)
+- `front-end/bigsofa-frontend/package-lock.json` (dependency resolution)
+- `front-end/bigsofa-frontend/src/App.jsx` (+2 lines: import and component)
+
+## Technical Notes
+- The project is a React 18 + Vite application
+- Already had `@vercel/analytics` installed, making Speed Insights a natural addition
+- Uses React Router v7 for routing
+- All routes automatically covered by the Speed Insights tracking
