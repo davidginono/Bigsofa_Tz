@@ -14,6 +14,7 @@ import {
 } from '@ant-design/icons'
 import { Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import logo from './assets/bigsofa.jpg'
 import HomePage from './components/HomePage/HomePage'
 import ShopPage from './components/ShopPage/ShopPage'
@@ -576,6 +577,7 @@ function App() {
         </Route>
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </>
   )
 }
