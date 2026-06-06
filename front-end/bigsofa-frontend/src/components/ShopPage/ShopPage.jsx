@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
-import { Card, Col, Empty, Row, Select, Spin, Typography, Alert, Input } from 'antd'
+import { Alert, Button, Card, Col, Empty, Input, Row, Select, Spin, Typography } from 'antd'
 import { HeartOutlined, HeartFilled, ShoppingCartOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import './ShopPage.css'
@@ -33,6 +33,36 @@ ProductImage.propTypes = {
 const FALLBACK_IMAGE = 'https://placehold.co/800x600?text=Furniture+Image'
 const MAX_DESCRIPTION_CHARACTERS = 110
 
+async function fetchJson(url, fallbackMessage) {
+  let response
+  try {
+    response = await fetch(url)
+  } catch {
+    throw new Error('The furniture service is currently unreachable. Please check your connection and try again.')
+  }
+
+  const contentType = response.headers?.get?.('content-type') || ''
+  let data = null
+
+  try {
+    if (!contentType || contentType.includes('application/json')) {
+      data = await response.json()
+    }
+  } catch {
+    throw new Error('The furniture service returned an unexpected response. Please try again shortly.')
+  }
+
+  if (!response.ok) {
+    throw new Error(fallbackMessage)
+  }
+
+  if (data === null) {
+    throw new Error('The furniture service returned an unexpected response. Please try again shortly.')
+  }
+
+  return data
+}
+
 function truncateDescription(description) {
   if (!description) {
     return ''
@@ -60,6 +90,7 @@ function ShopPage() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [retryCount, setRetryCount] = useState(0)
   const [previewItem, setPreviewItem] = useState(null)
 
   useEffect(() => {
@@ -98,11 +129,13 @@ function ShopPage() {
       setLoading(true)
       setError(null)
       try {
-        const response = await fetch(`${API_BASE_URL}/api/categories`)
-        if (!response.ok) {
-          throw new Error('Failed to load categories')
+        const data = await fetchJson(
+          `${API_BASE_URL}/api/categories`,
+          'Unable to load furniture categories. Please try again shortly.',
+        )
+        if (!Array.isArray(data)) {
+          throw new Error('The furniture service returned an unexpected response. Please try again shortly.')
         }
-        const data = await response.json()
         if (active) {
           setCategories(data)
           if (data.length > 0) {
@@ -124,7 +157,7 @@ function ShopPage() {
     return () => {
       active = false
     }
-  }, [])
+  }, [retryCount])
 
   useEffect(() => {
     if (!selectedCategoryId) {
@@ -137,18 +170,13 @@ function ShopPage() {
       setLoading(true)
       setError(null)
       try {
-        const response = await fetch(`${API_BASE_URL}/api/furniture?categoryId=${selectedCategoryId}`)
-        if (!response.ok) {
-          const text = await response.text()
-          let parsed = null
-          try {
-            parsed = JSON.parse(text)
-          } catch {
-            parsed = null
-          }
-          throw new Error(parsed?.message || text || 'Failed to load furniture')
+        const data = await fetchJson(
+          `${API_BASE_URL}/api/furniture?categoryId=${selectedCategoryId}`,
+          'Unable to load furniture. Please try again shortly.',
+        )
+        if (!Array.isArray(data)) {
+          throw new Error('The furniture service returned an unexpected response. Please try again shortly.')
         }
-        const data = await response.json()
         if (active) {
           const unique = data.filter((item, index, array) =>
             array.findIndex((candidate) => candidate.imageUrl === item.imageUrl) === index,
@@ -170,7 +198,7 @@ function ShopPage() {
     return () => {
       active = false
     }
-  }, [selectedCategoryId])
+  }, [selectedCategoryId, retryCount])
 
   const filteredItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase()
@@ -230,13 +258,21 @@ function ShopPage() {
         />
       </div>
 
-      {error && <Alert type="error" message={error} showIcon closable onClose={() => setError(null)} />}
+      {error && (
+        <Alert
+          type="error"
+          message="We could not load the furniture catalogue"
+          description={error}
+          showIcon
+          action={<Button size="small" onClick={() => setRetryCount((count) => count + 1)}>Try again</Button>}
+        />
+      )}
 
       {loading && categories.length === 0 ? (
         <div className="shop-page__loading">
           <Spin tip="Loading furniture..." />
         </div>
-      ) : filteredItems.length === 0 ? (
+      ) : !error && filteredItems.length === 0 ? (
         <Empty
           className="shop-page__empty"
           description={

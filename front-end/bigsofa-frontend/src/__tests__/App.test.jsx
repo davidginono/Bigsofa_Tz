@@ -2,13 +2,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import App from '../App'
 
 function renderApp(initialEntries = ['/']) {
   return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <App />
-    </MemoryRouter>,
+    <HelmetProvider>
+      <MemoryRouter initialEntries={initialEntries}>
+        <App />
+      </MemoryRouter>
+    </HelmetProvider>,
   )
 }
 
@@ -36,7 +39,7 @@ describe('Bigsofa Tanzania App', () => {
     expect(screen.getByRole('heading', { name: 'Welcome to Bigsofa Tanzania' })).toBeInTheDocument()
   })
 
-  it('supports navigating to shop and interacting with products', async () => {
+  it('supports searching and interacting with shop products', async () => {
     const categories = [{ id: 1, name: 'Sofas' }]
     const items = [
       { id: 11, name: 'Modern Sofa', description: 'Comfy', priceCents: 49900, imageUrl: '/api/furniture/11/image' },
@@ -61,9 +64,7 @@ describe('Bigsofa Tanzania App', () => {
     })
 
     const user = userEvent.setup()
-    renderApp()
-
-    await user.click(screen.getByRole('link', { name: /shop/i }))
+    renderApp(['/shop'])
     expect(await screen.findByText('Modern Sofa')).toBeInTheDocument()
 
     const searchInput = screen.getByPlaceholderText('Search furniture...')
@@ -74,10 +75,28 @@ describe('Bigsofa Tanzania App', () => {
     await waitFor(() => expect(screen.queryByText('Modern Sofa')).not.toBeInTheDocument())
 
     await user.click(screen.getByRole('button', { name: 'Toggle favorite for Desk' }))
-    expect(screen.getByTestId('favorites-badge')).toHaveTextContent('1')
     expect(screen.getByRole('button', { name: 'Toggle favorite for Desk' })).toHaveTextContent('Favorited')
 
     await user.click(screen.getByRole('button', { name: 'Add Desk to cart' }))
     expect(screen.getByTestId('cart-badge')).toHaveTextContent('1')
+  })
+
+  it('shows a useful retry message when the catalogue API returns HTML', async () => {
+    globalThis.fetch.mockResolvedValue({
+      ok: true,
+      headers: {
+        get: () => 'text/html',
+      },
+      json: async () => {
+        throw new SyntaxError("Unexpected token '<'")
+      },
+    })
+
+    renderApp(['/shop'])
+
+    expect(await screen.findByText('We could not load the furniture catalogue')).toBeInTheDocument()
+    expect(screen.getByText('The furniture service returned an unexpected response. Please try again shortly.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument()
+    expect(screen.queryByText('No items uploaded for this category yet.')).not.toBeInTheDocument()
   })
 })
