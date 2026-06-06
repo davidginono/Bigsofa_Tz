@@ -36,7 +36,9 @@ afterEach(() => {
 describe('Bigsofa Tanzania App', () => {
   it('renders home page by default', () => {
     renderApp()
-    expect(screen.getByRole('heading', { name: 'Welcome to Bigsofa Tanzania' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'Furniture shaped around the way you live.' })
+    ).toBeInTheDocument()
   })
 
   it('supports searching and interacting with shop products', async () => {

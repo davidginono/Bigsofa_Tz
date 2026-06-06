@@ -103,17 +103,50 @@ function HomePage() {
       <section
         ref={heroRef}
         className="home__hero home__layer home__fade"
-        style={{
-          '--hero-image': `url(${heroImage})`,
-          background: `url(${heroImage}) center/cover no-repeat`,
-        }}
+        style={{ '--hero-image': `url(${heroImage})` }}
       >
         <div className="home__hero-overlay">
-          <span className="home__hero-eyebrow">The Bigsofa Workshop</span>
-          <h1 className="home__headline">Welcome to Bigsofa Tanzania</h1>
-          <p className="home__tagline">
-            Bespoke furniture, interiors, and showroom experiences handcrafted in Tanzania.
-          </p>
+          <div className="home__hero-copy">
+            <span className="home__hero-eyebrow">Bespoke by design / Made in Tanzania</span>
+            <h1 className="home__headline">
+              Furniture shaped <span>around the way you live.</span>
+            </h1>
+            <p className="home__tagline">
+              Bespoke furniture, thoughtful interiors, and a showroom experience crafted in
+              Tanzania.
+            </p>
+            <div className="home__hero-actions">
+              <button
+                type="button"
+                className="home__hero-primary"
+                onClick={() => navigate('/shop')}
+              >
+                Shop the collection <span aria-hidden="true">&rarr;</span>
+              </button>
+              <button
+                type="button"
+                className="home__hero-secondary"
+                onClick={() => navigate('/showroom')}
+              >
+                Visit our showroom
+              </button>
+            </div>
+          </div>
+
+          <div className="home__hero-proof" aria-label="Bigsofa highlights">
+            <span>
+              <strong>Bespoke</strong>
+              Made to order
+            </span>
+            <span>
+              <strong>Local</strong>
+              Tanzanian craft
+            </span>
+            <span>
+              <strong>Complete</strong>
+              Interior solutions
+            </span>
+          </div>
         </div>
       </section>
 
@@ -126,7 +159,7 @@ function HomePage() {
               className="home__service-card"
               role="button"
               tabIndex={0}
-            onClick={() => navigate(service.route)}
+              onClick={() => navigate(service.route)}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
                   event.preventDefault()
